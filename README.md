@@ -4,6 +4,6 @@ Smart Startup - It is a SMART autorun that does not run each time other programs
 
 ## Features
 
-- Profiles - Helps you to manage pre set of the programs to run at sturtup
+- Profiles - Helps you to manage pre set of the programs to run at startup
 - Quick Scan Windows requistry of programs to run
-- Run CMD commands / Jar files or  whatever executable software you want
+- Run CMD commands / Jar files or whatever executable software you want
