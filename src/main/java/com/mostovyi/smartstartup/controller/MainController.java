@@ -1,12 +1,14 @@
 package com.mostovyi.smartstartup.controller;
 
+import com.mostovyi.smartstartup.service.MainService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.controlsfx.control.ToggleSwitch;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,10 +22,11 @@ public class MainController {
     @FXML
     private VBox programsVBox;
 
-    public void createFlow(ActionEvent actionEvent) {
+    @Autowired
+    private MainService mainService;
 
-        ToggleButton button = new ToggleButton();
-        button.setText("click");
+    public void createFlow(ActionEvent actionEvent) {
+        ToggleSwitch toggleSwitch = new ToggleSwitch();
         Label name = new Label();
         name.setText("flow name");
         Label profile = new Label();
@@ -31,7 +34,9 @@ public class MainController {
         Label condition = new Label();
         condition.setText("condition name");
 
-        flowsTilePane.getChildren().addAll(button, name, profile, condition);
+        mainService.createFlow();
+
+        flowsTilePane.getChildren().addAll(toggleSwitch, name, profile, condition);
     }
 
 }
