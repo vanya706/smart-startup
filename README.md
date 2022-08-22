@@ -4,8 +4,22 @@ Smart Startup - It is a SMART autorun that does not run each time other programs
 
 ## Features
 
-- Profiles - Helps you to manage pre set of the programs to run at startup
+- Profiles - Helps you to manage preset of the programs to run at startup
 - Quick Scan Windows registry of programs to run
 - Run CMD commands / Jar files or whatever executable software you want
 - Startup with multiple profiles at one time, with defend against twice running same file
 - You can also run programs from profiles manually
+
+
+### Supported Conditions
+
+- DayOfWeek - By One Or Some Or All Days of the Week
+- Time - By Specific Time
+- PowerConnected - True or False (useful for laptops)
+
+> Can be multiple conditions for example:
+> DayOfWeek: Monday, Tuesday, Wednesday, Thursday, Friday 
+> AND Time: after 19:00 AND PowerConnected: True
+> OR DayOfWeek: Saturday, Sunday
+> AND PowerConnected: True
+> RUN Flow: Music
