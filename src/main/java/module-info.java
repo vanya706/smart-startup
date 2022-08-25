@@ -15,6 +15,9 @@ module smart.startup {
     requires jakarta.persistence;
     requires spring.data.jpa;
     requires org.hibernate.orm.core;
+    requires org.apache.commons.collections4;
+    requires org.apache.commons.lang3;
+    requires org.slf4j;
 
     opens com.mostovyi.smartstartup;
     opens com.mostovyi.smartstartup.domain;
