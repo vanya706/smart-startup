@@ -14,11 +14,11 @@ Smart Startup - It is a SMART autorun that does not run each time other programs
 
 - DayOfWeek - By One Or Some Or All Days of the Week
 - Time - By Specific Time
-- PowerConnected - True or False (useful for laptops)
+- BatteryState: Charging (useful for laptops)
 
 > Can be multiple conditions, for instance:
 > DayOfWeek: Monday, Tuesday, Wednesday, Thursday, Friday 
-> AND Time: after 19:00 AND PowerConnected: True
+> AND Time: after 19:00 AND BatteryState: Charging
 > OR DayOfWeek: Saturday, Sunday
-> AND PowerConnected: True
+> AND BatteryState: Charging
 > then RUN Flow: Music
