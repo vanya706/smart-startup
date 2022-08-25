@@ -14,6 +14,9 @@ module smart.startup {
     requires lombok;
     requires jakarta.persistence;
     requires spring.data.jpa;
+    requires spring.data.commons;
+    requires spring.tx;
+    requires spring.aop;
     requires org.hibernate.orm.core;
     requires org.apache.commons.collections4;
     requires org.apache.commons.lang3;
@@ -26,6 +29,7 @@ module smart.startup {
 
     exports com.mostovyi.smartstartup to javafx.graphics;
     exports com.mostovyi.smartstartup.controller to spring.beans;
-    exports com.mostovyi.smartstartup.service to spring.beans;
+    exports com.mostovyi.smartstartup.service to spring.beans, spring.context;
+    exports com.mostovyi.smartstartup.util to spring.beans;
 
 }
