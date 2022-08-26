@@ -26,10 +26,12 @@ module smart.startup {
     opens com.mostovyi.smartstartup.domain;
     opens com.mostovyi.smartstartup.controller to net.rgielen.fxweaver.core, javafx.fxml, spring.core;
     opens com.mostovyi.smartstartup.service to spring.core;
+    opens com.mostovyi.smartstartup.config to spring.core;
 
     exports com.mostovyi.smartstartup to javafx.graphics;
     exports com.mostovyi.smartstartup.controller to spring.beans;
     exports com.mostovyi.smartstartup.service to spring.beans, spring.context;
+    exports com.mostovyi.smartstartup.config to spring.beans, spring.context;
     exports com.mostovyi.smartstartup.util to spring.beans;
 
 }

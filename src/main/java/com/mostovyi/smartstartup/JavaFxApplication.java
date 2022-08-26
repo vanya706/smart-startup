@@ -1,12 +1,10 @@
 package com.mostovyi.smartstartup;
 
-import com.mostovyi.smartstartup.controller.MainController;
+import com.mostovyi.smartstartup.constant.FxmlView;
+import com.mostovyi.smartstartup.service.StageManager;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
@@ -25,10 +23,8 @@ public class JavaFxApplication extends Application {
 
     @Override
     public void start(Stage stage) {
-        FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
-        Parent root = fxWeaver.loadView(MainController.class);
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        StageManager stageManager = applicationContext.getBean(StageManager.class, stage);
+        stageManager.switchScene(FxmlView.MAIN);
         stage.show();
     }
 
