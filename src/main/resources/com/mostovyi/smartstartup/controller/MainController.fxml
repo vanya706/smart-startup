@@ -60,7 +60,7 @@
          <children>
             <AnchorPane VBox.vgrow="SOMETIMES">
                <children>
-                  <TilePane id="flowsTilePane" fx:id="flowsTilePane" prefColumns="4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TilePane id="flowsTilePane" fx:id="flowsTilePane" prefColumns="4" prefRows="1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="button-box" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createFlow" text="Create Flow" />
@@ -72,26 +72,26 @@
             </AnchorPane>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox id="profilesVBox" fx:id="profilesVBox" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                  <TilePane fx:id="profilesTilePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefColumns="3" prefRows="1" HBox.hgrow="ALWAYS" />
+                  <VBox layoutX="10.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity">
                      <children>
                         <VBox alignment="TOP_CENTER" styleClass="button-box" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Create Profile" />
+                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createProfile" text="Create Profile" />
                               <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Update Profile" />
                               <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Profile" />
                            </children>
                         </VBox>
                         <VBox alignment="BOTTOM_CENTER" styleClass="button-box" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Create Program" />
+                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createProgram" text="Create Program" />
                               <Button layoutX="10.0" layoutY="85.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Update Program" />
                               <Button layoutX="10.0" layoutY="110.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete Program" />
                            </children>
                         </VBox>
                      </children>
                   </VBox>
-                  <VBox id="programsVBox" fx:id="programsVBox" layoutX="110.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                  <TilePane fx:id="programsTilePane" alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefColumns="2" prefRows="1" tileAlignment="CENTER_RIGHT" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>

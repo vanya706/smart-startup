@@ -25,6 +25,7 @@ public class JavaFxApplication extends Application {
     public void start(Stage stage) {
         StageManager stageManager = applicationContext.getBean(StageManager.class, stage);
         stageManager.switchScene(FxmlView.MAIN);
+        stage.setTitle("Smart Startup");
         stage.show();
     }
 
