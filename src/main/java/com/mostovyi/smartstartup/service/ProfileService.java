@@ -27,6 +27,14 @@ public class ProfileService {
     }
 
     @Transactional
+    public void save(ProfileModel profileModel) {
+        Long id = profileModel.id().get();
+        Profile existent = profileRepository.findById(id).get();
+        profileMapper.updateFromModel(existent, profileModel);
+        profileRepository.save(existent);
+    }
+
+    @Transactional
     public List<ProfileModel> findAll() {
         return profileMapper.mapToModels(profileRepository.findAll());
     }

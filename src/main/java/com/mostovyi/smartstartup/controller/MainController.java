@@ -44,9 +44,13 @@ public class MainController extends BaseController {
 
     @Override
     public void initialize() {
+        initializeFlowTableView();
+        initializeProfileTableView();
+    }
 
-        List<FlowModel> flows = flowService.findAll();
-        flowsTableView.setItems(FXCollections.observableList(flows));
+    private void initializeFlowTableView() {
+        List<FlowModel> flowModels = flowService.findAll();
+        flowsTableView.setItems(FXCollections.observableList(flowModels));
         flowsTableView.setEditable(true);
 
         TableColumn<FlowModel, ToggleSwitch> runColumn = new TableColumn<>("Run");
@@ -80,7 +84,44 @@ public class MainController extends BaseController {
         profilesColumn.setCellFactory(CheckComboBoxTableCell.forCellFactory(profiles, FlowModel::profiles, flowModel -> flowService.save(flowModel)));
 
         flowsTableView.getColumns().setAll(runColumn, nameColumn, profilesColumn);
+    }
 
+    private void initializeProfileTableView() {
+        List<ProfileModel> profileModels = profileService.findAll();
+        profilesTableView.setItems(FXCollections.observableList(profileModels));
+        profilesTableView.setEditable(true);
+
+        TableColumn<ProfileModel, ToggleSwitch> runColumn = new TableColumn<>("Run");
+        runColumn.setCellValueFactory(param -> {
+            ProfileModel profile = param.getValue();
+            ToggleSwitch toggleSwitch = profile.run().get();
+            toggleSwitch.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                if (toggleSwitch.isSelected()) {
+                    flowService.run(profile.id().get());
+                } else {
+                    flowService.close(profile.id().get());
+                }
+            });
+            return new SimpleObjectProperty<>(toggleSwitch);
+        });
+
+        TableColumn<ProfileModel, String> nameColumn = new TableColumn<>("Name");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        nameColumn.setEditable(true);
+        nameColumn.setOnEditCommit(event -> {
+            ProfileModel profileModel = event.getRowValue();
+            profileModel.name().set(event.getNewValue());
+            profileService.save(profileModel);
+        });
+
+        List<ProgramModel> programModels = programService.findAll();
+        TableColumn<ProfileModel, List<ProgramModel>> programColumn = new TableColumn<>("Programs");
+        programColumn.setEditable(true);
+        programColumn.setCellValueFactory(new PropertyValueFactory<>("programs"));
+        programColumn.setCellFactory(CheckComboBoxTableCell.forCellFactory(programModels, ProfileModel::programs, flowModel -> profileService.save(flowModel)));
+
+        profilesTableView.getColumns().setAll(runColumn, nameColumn, programColumn);
     }
 
     public void createFlow() {

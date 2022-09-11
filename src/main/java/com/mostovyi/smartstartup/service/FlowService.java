@@ -34,10 +34,10 @@ public class FlowService {
     }
 
     @Transactional
-    public void save(FlowModel fromModel) {
-        Long id = fromModel.id().get();
+    public void save(FlowModel flowModel) {
+        Long id = flowModel.id().get();
         Flow existent = flowRepository.findById(id).get();
-        flowMapper.updateFromModel(existent, fromModel);
+        flowMapper.updateFromModel(existent, flowModel);
         flowRepository.save(existent);
     }
 

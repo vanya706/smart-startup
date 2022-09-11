@@ -1,7 +1,8 @@
 package com.mostovyi.smartstartup.domain;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @Entity
 public class Profile extends BaseSoftwareEntity {
 
-    @OneToMany(mappedBy = "profile")
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Program> programs;
 
 }
