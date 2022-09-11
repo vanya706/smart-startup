@@ -7,12 +7,10 @@ import com.mostovyi.smartstartup.util.EnumConverter;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.UuidGenerator;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Set;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -21,10 +19,9 @@ public class Condition {
 
     @Id
     @GeneratedValue
-    @UuidGenerator
-    private UUID id;
+    private Long id;
 
-    private UUID groupId;
+    private Long groupId;
 
     @Enumerated(EnumType.STRING)
     private ConditionType type;

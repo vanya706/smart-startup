@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -15,7 +14,7 @@ public class ConditionService {
 
     public boolean isReadyToRunByConditions(List<Condition> conditions) {
 
-        Map<UUID, List<Condition>> groupedConditionsMap = conditions.stream()
+        Map<Long, List<Condition>> groupedConditionsMap = conditions.stream()
                 .collect(Collectors.groupingBy(Condition::getGroupId));
 
         for (List<Condition> groupedConditions : groupedConditionsMap.values()) {

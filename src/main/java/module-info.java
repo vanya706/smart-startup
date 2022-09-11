@@ -21,6 +21,7 @@ module smart.startup {
     requires org.apache.commons.collections4;
     requires org.apache.commons.lang3;
     requires org.slf4j;
+    requires org.mapstruct;
 
     opens com.mostovyi.smartstartup;
     opens com.mostovyi.smartstartup.domain;
@@ -32,6 +33,9 @@ module smart.startup {
     exports com.mostovyi.smartstartup.controller to spring.beans;
     exports com.mostovyi.smartstartup.service to spring.beans, spring.context;
     exports com.mostovyi.smartstartup.config to spring.beans, spring.context;
+    exports com.mostovyi.smartstartup.mapper to spring.beans;
     exports com.mostovyi.smartstartup.util to spring.beans;
+    opens com.mostovyi.smartstartup.model;
+    exports com.mostovyi.smartstartup.mapper.base to spring.beans;
 
 }

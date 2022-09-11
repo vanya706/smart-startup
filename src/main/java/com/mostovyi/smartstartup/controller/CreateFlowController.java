@@ -1,9 +1,9 @@
 package com.mostovyi.smartstartup.controller;
 
-import com.mostovyi.smartstartup.domain.Profile;
+import com.mostovyi.smartstartup.model.ProfileModel;
 import com.mostovyi.smartstartup.service.FlowService;
 import com.mostovyi.smartstartup.service.ProfileService;
-import com.mostovyi.smartstartup.util.SoftwareConverter;
+import com.mostovyi.smartstartup.util.SoftwareModelConverter;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -23,7 +23,7 @@ public class CreateFlowController extends BaseController {
     @FXML
     private TextField flowNameTextField;
     @FXML
-    private CheckComboBox<Profile> profilesCheckComboBox;
+    private CheckComboBox<ProfileModel> profilesCheckComboBox;
 
     @Autowired
     private FlowService flowService;
@@ -32,14 +32,14 @@ public class CreateFlowController extends BaseController {
 
     @Override
     public void initialize() {
-        List<Profile> profiles = profileService.findAll();
+        List<ProfileModel> profiles = profileService.findAll();
         profilesCheckComboBox.getItems().addAll(profiles);
-        profilesCheckComboBox.setConverter(new SoftwareConverter<>());
+        profilesCheckComboBox.setConverter(new SoftwareModelConverter<>());
     }
 
     public void createFlow() {
         String name = flowNameTextField.getText();
-        ObservableList<Profile> checkedProfiles = profilesCheckComboBox.getCheckModel().getCheckedItems();
+        ObservableList<ProfileModel> checkedProfiles = profilesCheckComboBox.getCheckModel().getCheckedItems();
         flowService.createFlow(name, checkedProfiles);
         stageManager.switchScene(MAIN);
     }

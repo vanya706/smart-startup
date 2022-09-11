@@ -5,9 +5,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.UuidGenerator;
-
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,8 +13,7 @@ public abstract class BaseSoftwareEntity {
 
     @Id
     @GeneratedValue
-    @UuidGenerator
-    private UUID id;
+    private Long id;
 
     private String name;
 

@@ -1,7 +1,6 @@
 package com.mostovyi.smartstartup.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +11,7 @@ import java.util.List;
 @Entity
 public class Flow extends BaseSoftwareEntity {
 
-    @OneToMany(mappedBy = "flow")
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Profile> profiles;
 
     @OneToMany(mappedBy = "flow")
