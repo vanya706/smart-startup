@@ -6,6 +6,7 @@ import com.mostovyi.smartstartup.model.ProgramModel;
 import com.mostovyi.smartstartup.repository.ProgramRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,6 +26,22 @@ public class ProgramService {
 
     public List<ProgramModel> findAll() {
         return programMapper.mapToModels(programRepository.findAll());
+    }
+
+    @Transactional
+    public void save(ProgramModel programModel) {
+        Long id = programModel.id().get();
+        Program existent = programRepository.findById(id).get();
+        programMapper.updateFromModel(existent, programModel);
+        programRepository.save(existent);
+    }
+
+    public void run(long id) {
+
+    }
+
+    public void close(long id) {
+
     }
 
 }

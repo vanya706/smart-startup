@@ -46,6 +46,7 @@ public class MainController extends BaseController {
     public void initialize() {
         initializeFlowTableView();
         initializeProfileTableView();
+        initializeProgramTableView();
     }
 
     private void initializeFlowTableView() {
@@ -97,9 +98,9 @@ public class MainController extends BaseController {
             ToggleSwitch toggleSwitch = profile.run().get();
             toggleSwitch.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 if (toggleSwitch.isSelected()) {
-                    flowService.run(profile.id().get());
+                    profileService.run(profile.id().get());
                 } else {
-                    flowService.close(profile.id().get());
+                    profileService.close(profile.id().get());
                 }
             });
             return new SimpleObjectProperty<>(toggleSwitch);
@@ -122,6 +123,36 @@ public class MainController extends BaseController {
         programColumn.setCellFactory(CheckComboBoxTableCell.forCellFactory(programModels, ProfileModel::programs, flowModel -> profileService.save(flowModel)));
 
         profilesTableView.getColumns().setAll(runColumn, nameColumn, programColumn);
+    }
+
+    private void initializeProgramTableView() {
+        List<ProgramModel> programModels = programService.findAll();
+        programsTableView.setItems(FXCollections.observableList(programModels));
+        programsTableView.setEditable(true);
+
+        TableColumn<ProgramModel, ToggleSwitch> runColumn = new TableColumn<>("Run");
+        runColumn.setCellValueFactory(param -> {
+            ProgramModel programModel = param.getValue();
+            ToggleSwitch toggleSwitch = programModel.run().get();
+            toggleSwitch.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                if (toggleSwitch.isSelected()) {
+                    programService.run(programModel.id().get());
+                } else {
+                    programService.close(programModel.id().get());
+                }
+            });
+            return new SimpleObjectProperty<>(toggleSwitch);
+        });
+
+        TableColumn<ProgramModel, String> nameColumn = new TableColumn<>("Name");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        nameColumn.setEditable(true);
+        nameColumn.setOnEditCommit(event -> {
+            ProgramModel programModel = event.getRowValue();
+            programModel.name().set(event.getNewValue());
+            programService.save(programModel);
+        });
     }
 
     public void createFlow() {

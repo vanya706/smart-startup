@@ -39,4 +39,12 @@ public class ProfileService {
         return profileMapper.mapToModels(profileRepository.findAll());
     }
 
+    public void run(long id) {
+
+    }
+
+    public void close(long id) {
+
+    }
+
 }
