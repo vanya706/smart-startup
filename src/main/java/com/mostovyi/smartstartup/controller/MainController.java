@@ -6,21 +6,16 @@ import com.mostovyi.smartstartup.model.ProgramModel;
 import com.mostovyi.smartstartup.service.FlowService;
 import com.mostovyi.smartstartup.service.ProfileService;
 import com.mostovyi.smartstartup.service.ProgramService;
-import com.mostovyi.smartstartup.util.SoftwareModelCollectionConverter;
-import com.mostovyi.smartstartup.util.SoftwareModelConverter;
+import com.mostovyi.smartstartup.util.CheckComboBoxTableCell;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import net.rgielen.fxweaver.core.FxmlView;
-import org.controlsfx.control.CheckComboBox;
-import org.controlsfx.control.IndexedCheckModel;
 import org.controlsfx.control.ToggleSwitch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -82,57 +77,7 @@ public class MainController extends BaseController {
         TableColumn<FlowModel, List<ProfileModel>> profilesColumn = new TableColumn<>("Profiles");
         profilesColumn.setEditable(true);
         profilesColumn.setCellValueFactory(new PropertyValueFactory<>("profiles"));
-        profilesColumn.setCellFactory(callback -> new TableCell<>() {
-
-            @Override
-            public void startEdit() {
-                super.startEdit();
-                FlowModel flowModel = getCurrentFlow();
-
-                CheckComboBox<ProfileModel> checkComboBox = new CheckComboBox<>(FXCollections.observableList(profiles));
-                checkComboBox.setConverter(new SoftwareModelConverter<>());
-                IndexedCheckModel<ProfileModel> checkModel = checkComboBox.getCheckModel();
-                flowModel.profiles().forEach(checkModel::check);
-                setGraphic(checkComboBox);
-            }
-
-            @Override
-            public void commitEdit(List<ProfileModel> newValue) {
-                super.commitEdit(newValue);
-                cancelEdit();
-            }
-
-            @Override
-            public void cancelEdit() {
-                super.cancelEdit();
-                CheckComboBox<ProfileModel> checkComboBox = (CheckComboBox<ProfileModel>) getGraphic();
-                List<ProfileModel> profiles = checkComboBox.getCheckModel().getCheckedItems();
-                FlowModel flowModel = getCurrentFlow();
-                flowModel.profiles().clear();
-                flowModel.profiles().addAll(profiles);
-                Label label = new Label();
-                label.setText(new SoftwareModelCollectionConverter<>().toString(flowModel.profiles()));
-                setGraphic(label);
-                flowService.save(flowModel);
-            }
-
-            @Override
-            protected void updateItem(List<ProfileModel> item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !item.isEmpty()) {
-                    Label label = new Label();
-                    label.setText(new SoftwareModelCollectionConverter<>().toString(item));
-                    setGraphic(label);
-                } else {
-                    setGraphic(null);
-                }
-            }
-
-            private FlowModel getCurrentFlow() {
-                int index = super.getTableRow().getIndex();
-                return super.getTableView().getItems().get(index);
-            }
-        });
+        profilesColumn.setCellFactory(CheckComboBoxTableCell.forCellFactory(profiles, FlowModel::profiles, flowModel -> flowService.save(flowModel)));
 
         flowsTableView.getColumns().setAll(runColumn, nameColumn, profilesColumn);
 
