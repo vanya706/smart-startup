@@ -154,7 +154,17 @@ public class MainController extends BaseController {
             programService.save(programModel);
         });
 
-        programsTableView.getColumns().setAll(runColumn, nameColumn);
+        TableColumn<ProgramModel, String> pathColumn = new TableColumn<>("Path");
+        pathColumn.setCellValueFactory(new PropertyValueFactory<>("path"));
+        pathColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        pathColumn.setEditable(true);
+        pathColumn.setOnEditCommit(event -> {
+            ProgramModel programModel = event.getRowValue();
+            programModel.path().set(event.getNewValue());
+            programService.save(programModel);
+        });
+
+        programsTableView.getColumns().setAll(runColumn, nameColumn, pathColumn);
     }
 
     public void createFlow() {

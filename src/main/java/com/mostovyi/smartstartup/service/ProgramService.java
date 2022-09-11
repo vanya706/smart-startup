@@ -18,9 +18,10 @@ public class ProgramService {
     @Autowired
     private ProgramRepository programRepository;
 
-    public void create(String name) {
+    public void create(String name, String path) {
         Program program = new Program();
         program.setName(name);
+        program.setPath(path);
         programRepository.save(program);
     }
 

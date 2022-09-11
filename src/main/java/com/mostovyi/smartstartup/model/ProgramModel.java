@@ -7,8 +7,12 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.controlsfx.control.ToggleSwitch;
 
-public record ProgramModel(LongProperty id, StringProperty name,
-                           ObjectProperty<ToggleSwitch> run) implements BaseSoftwareModelInterface {
+public record ProgramModel(LongProperty id, StringProperty name, ObjectProperty<ToggleSwitch> run,
+                           StringProperty path) implements BaseSoftwareModelInterface {
+
+    public StringProperty pathProperty() {
+        return path;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -9,4 +9,6 @@ import lombok.Setter;
 @Entity
 public class Program extends BaseSoftwareEntity {
 
+    private String path;
+
 }
