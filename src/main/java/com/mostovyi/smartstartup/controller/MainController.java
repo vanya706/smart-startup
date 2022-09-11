@@ -153,6 +153,8 @@ public class MainController extends BaseController {
             programModel.name().set(event.getNewValue());
             programService.save(programModel);
         });
+
+        programsTableView.getColumns().setAll(runColumn, nameColumn);
     }
 
     public void createFlow() {
