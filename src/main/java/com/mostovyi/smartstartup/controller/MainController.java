@@ -170,7 +170,7 @@ public class MainController extends BaseController {
         fileName.setEditable(true);
         fileName.setOnEditCommit(event -> {
             ProgramModel programModel = event.getRowValue();
-            programModel.path().set(event.getNewValue());
+            programModel.fileName().set(event.getNewValue());
             programService.save(programModel);
         });
 
