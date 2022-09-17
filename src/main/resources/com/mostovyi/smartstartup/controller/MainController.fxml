@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.CheckMenuItem?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mostovyi.smartstartup.controller.MainController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
@@ -24,7 +25,12 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Program">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#createProgram" text="Create Program" />
+                  <CheckMenuItem mnemonicParsing="false" text="Create Program" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Settings">
+               <items>
+                  <CheckMenuItem fx:id="useDarkThemeCheckMenuItem" mnemonicParsing="false" text="Use Dark Theme" />
                </items>
             </Menu>
                 <Menu mnemonicParsing="false" text="File">

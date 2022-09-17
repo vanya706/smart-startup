@@ -9,7 +9,9 @@ import com.mostovyi.smartstartup.service.ProgramService;
 import com.mostovyi.smartstartup.util.component.CheckComboBoxTableCell;
 import com.mostovyi.smartstartup.util.component.SellValueToggleSwitch;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,6 +30,8 @@ import static com.mostovyi.smartstartup.constant.FxmlView.*;
 public class MainController extends BaseController {
 
     @FXML
+    private CheckMenuItem useDarkThemeCheckMenuItem;
+    @FXML
     private TableView<FlowModel> flowsTableView;
     @FXML
     private TableView<ProfileModel> profilesTableView;
@@ -43,9 +47,22 @@ public class MainController extends BaseController {
 
     @Override
     public void initialize() {
+        initializeMenuItems();
         initializeFlowTableView();
         initializeProfileTableView();
         initializeProgramTableView();
+    }
+
+    private void initializeMenuItems() {
+        useDarkThemeCheckMenuItem.selectedProperty()
+                .addListener((observable, wasSelected, isSelected) -> {
+                    ObservableList<String> stylesheets = flowsTableView.getScene().getStylesheets();
+                    if (isSelected) {
+                        stylesheets.add("dark-theme.css");
+                        return;
+                    }
+                    stylesheets.remove("dark-theme.css");
+                });
     }
 
     private void initializeFlowTableView() {
