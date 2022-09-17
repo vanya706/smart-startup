@@ -13,4 +13,6 @@ public class Program extends BaseSoftwareEntity {
 
     private String fileName;
 
+    private Boolean minimized;
+
 }

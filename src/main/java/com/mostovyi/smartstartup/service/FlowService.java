@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class FlowService extends AbstractSoftwareService {
+public class FlowService extends AbstractSoftwareService<FlowModel> {
 
     @Autowired
     private FlowRepository flowRepository;
@@ -33,7 +33,6 @@ public class FlowService extends AbstractSoftwareService {
         flowRepository.save(flow);
     }
 
-    @Transactional
     public void save(FlowModel flowModel) {
         Long id = flowModel.id().get();
         Flow existent = flowRepository.findById(id).get();

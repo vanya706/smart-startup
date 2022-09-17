@@ -4,12 +4,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.ToggleSwitch?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mostovyi.smartstartup.controller.CreateProgramController">
     <children>
         <TextField fx:id="programNameTextField" promptText="Please fill in name of the Program" />
       <Label fx:id="selectedProgramPathLabel" text="Please choose file" />
       <Label fx:id="selectedProgramName" text="Please choose file" />
+        <ToggleSwitch fx:id="minimizedToggleSwitch" text="Open minimized" />
         <Button mnemonicParsing="false" onAction="#chooseFile" text="Choose file" />
         <Button mnemonicParsing="false" onAction="#createProgram" text="Create" />
         <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" />

@@ -1,6 +1,7 @@
 package com.mostovyi.smartstartup.mapper.base;
 
 import javafx.beans.property.*;
+import org.apache.commons.lang3.BooleanUtils;
 
 import java.util.List;
 
@@ -20,6 +21,14 @@ public interface BaseModelMapper {
 
     default String mapToString(StringProperty stringProperty) {
         return stringProperty.get();
+    }
+
+    default Boolean mapToBoolean(BooleanProperty booleanProperty) {
+        return booleanProperty.get();
+    }
+
+    default BooleanProperty mapToBoolean(Boolean bool) {
+        return new SimpleBooleanProperty(BooleanUtils.isTrue(bool));
     }
 
     default <T> SimpleListProperty<T> mapToSimpleListProperty(List<T> list) {

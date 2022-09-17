@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class ProfileService extends AbstractSoftwareService {
+public class ProfileService extends AbstractSoftwareService<ProfileModel> {
 
     @Autowired
     private ProfileMapper profileMapper;

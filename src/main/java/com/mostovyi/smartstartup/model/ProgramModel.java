@@ -7,8 +7,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.controlsfx.control.ToggleSwitch;
 
-public record ProgramModel(LongProperty id, StringProperty name, ObjectProperty<ToggleSwitch> run,
-                           StringProperty path, StringProperty fileName) implements BaseSoftwareModelInterface {
+public record ProgramModel(LongProperty id, StringProperty name, ObjectProperty<ToggleSwitch> run, StringProperty path,
+                           StringProperty fileName, ObjectProperty<ToggleSwitch> minimized) implements BaseSoftwareModelInterface {
 
     public StringProperty pathProperty() {
         return path;
@@ -16,6 +16,10 @@ public record ProgramModel(LongProperty id, StringProperty name, ObjectProperty<
 
     public StringProperty fileNameProperty() {
         return fileName;
+    }
+
+    public ObjectProperty<ToggleSwitch> minimizedProperty() {
+        return minimized;
     }
 
     @Override

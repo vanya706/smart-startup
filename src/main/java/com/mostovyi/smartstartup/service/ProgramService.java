@@ -16,18 +16,19 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class ProgramService extends AbstractSoftwareService {
+public class ProgramService extends AbstractSoftwareService<ProgramModel> {
 
     @Autowired
     private ProgramMapper programMapper;
     @Autowired
     private ProgramRepository programRepository;
 
-    public void create(String name, String path, String fileName) {
+    public void create(String name, String path, String fileName, boolean minimized) {
         Program program = new Program();
         program.setName(name);
         program.setPath(path);
         program.setFileName(fileName);
+        program.setMinimized(minimized);
         programRepository.save(program);
     }
 
@@ -56,7 +57,7 @@ public class ProgramService extends AbstractSoftwareService {
             return;
         }
 
-        ProcessUtils.runByPath(program.getPath());
+        ProcessUtils.runByPath(program.getPath(), program.getMinimized());
 
         program.setRun(true);
         programRepository.save(program);

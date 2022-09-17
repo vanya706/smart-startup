@@ -54,7 +54,7 @@ public class MainController extends BaseController {
         flowsTableView.setEditable(true);
 
         TableColumn<FlowModel, ToggleSwitch> runColumn = new TableColumn<>("Run");
-        runColumn.setCellValueFactory(SellValueToggleSwitch.forCellValueFactory(flowService));
+        runColumn.setCellValueFactory(SellValueToggleSwitch.forRunCellValueFactory(flowService));
 
         TableColumn<FlowModel, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -81,7 +81,7 @@ public class MainController extends BaseController {
         profilesTableView.setEditable(true);
 
         TableColumn<ProfileModel, ToggleSwitch> runColumn = new TableColumn<>("Run");
-        runColumn.setCellValueFactory(SellValueToggleSwitch.forCellValueFactory(profileService));
+        runColumn.setCellValueFactory(SellValueToggleSwitch.forRunCellValueFactory(profileService));
 
         TableColumn<ProfileModel, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -108,7 +108,10 @@ public class MainController extends BaseController {
         programsTableView.setEditable(true);
 
         TableColumn<ProgramModel, ToggleSwitch> runColumn = new TableColumn<>("Run");
-        runColumn.setCellValueFactory(SellValueToggleSwitch.forCellValueFactory(programService));
+        runColumn.setCellValueFactory(SellValueToggleSwitch.forRunCellValueFactory(programService));
+
+        TableColumn<ProgramModel, ToggleSwitch> minimizedColumn = new TableColumn<>("Minimized");
+        minimizedColumn.setCellValueFactory(SellValueToggleSwitch.forMinimizedCellValueFactory(programService));
 
         TableColumn<ProgramModel, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -140,7 +143,7 @@ public class MainController extends BaseController {
             programService.save(programModel);
         });
 
-        programsTableView.getColumns().setAll(runColumn, nameColumn, pathColumn, fileName);
+        programsTableView.getColumns().setAll(runColumn, minimizedColumn, nameColumn, pathColumn, fileName);
     }
 
     public void createFlow() {

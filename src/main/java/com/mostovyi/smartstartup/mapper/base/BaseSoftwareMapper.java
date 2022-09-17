@@ -1,6 +1,7 @@
 package com.mostovyi.smartstartup.mapper.base;
 
 import com.mostovyi.smartstartup.domain.BaseSoftwareEntity;
+import org.apache.commons.lang3.BooleanUtils;
 import org.controlsfx.control.ToggleSwitch;
 import org.mapstruct.MappingTarget;
 
@@ -18,10 +19,14 @@ public interface BaseSoftwareMapper<E extends BaseSoftwareEntity, M> extends Bas
 
     void updateFromModel(@MappingTarget E existent, M model);
 
-    default ToggleSwitch mapToToggleSwitch(boolean value) {
+    default ToggleSwitch mapToToggleSwitch(Boolean value) {
         ToggleSwitch toggleSwitch = new ToggleSwitch();
-        toggleSwitch.setSelected(value);
+        toggleSwitch.setSelected(BooleanUtils.isTrue(value));
         return toggleSwitch;
+    }
+
+    default ToggleSwitch mapToToggleSwitch(boolean value) {
+        return mapToToggleSwitch((Boolean) value);
     }
 
     default boolean mapToBoolean(ToggleSwitch toggleSwitch) {

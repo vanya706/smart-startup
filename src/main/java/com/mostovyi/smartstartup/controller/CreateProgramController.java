@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.controlsfx.control.ToggleSwitch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,8 @@ public class CreateProgramController extends BaseController {
     private Label selectedProgramPathLabel;
     @FXML
     private Label selectedProgramName;
+    @FXML
+    private ToggleSwitch minimizedToggleSwitch;
 
     @Autowired
     private ProgramService programService;
@@ -37,7 +40,8 @@ public class CreateProgramController extends BaseController {
         String name = programNameTextField.getText();
         String path = selectedProgramPathLabel.getText();
         String fileName = selectedProgramName.getText();
-        programService.create(name, path, fileName);
+        boolean minimized = minimizedToggleSwitch.isSelected();
+        programService.create(name, path, fileName, minimized);
         stageManager.switchScene(MAIN);
     }
 
