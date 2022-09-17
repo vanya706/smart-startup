@@ -4,12 +4,17 @@ import com.mostovyi.smartstartup.domain.Program;
 import com.mostovyi.smartstartup.mapper.ProgramMapper;
 import com.mostovyi.smartstartup.model.ProgramModel;
 import com.mostovyi.smartstartup.repository.ProgramRepository;
+import com.mostovyi.smartstartup.util.ProcessUtils;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
+@Slf4j
 @Service
 public class ProgramService {
 
@@ -39,11 +44,42 @@ public class ProgramService {
     }
 
     public void run(long id) {
+        Optional<Program> optionalProgram = programRepository.findById(id);
+        if (optionalProgram.isEmpty()) {
+            log.error("Program with id: {} does not exists!", id);
+            return;
+        }
 
+        Program program = optionalProgram.get();
+        if (program.isRun()) {
+            log.info("Program with id: {} already run!", id);
+            return;
+        }
+
+        ProcessUtils.runByPath(program.getPath());
+
+        program.setRun(true);
+        programRepository.save(program);
     }
 
+    @SneakyThrows
     public void close(long id) {
+        Optional<Program> optionalProgram = programRepository.findById(id);
+        if (optionalProgram.isEmpty()) {
+            log.error("Program with id: {} does not exists!", id);
+            return;
+        }
 
+        Program program = optionalProgram.get();
+        if (!program.isRun()) {
+            log.info("Program with id: {} not running!", id);
+            return;
+        }
+
+        ProcessUtils.destroyByFileName(program.getFileName());
+
+        program.setRun(false);
+        programRepository.save(program);
     }
 
 }
