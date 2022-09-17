@@ -8,10 +8,14 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.controlsfx.control.ToggleSwitch;
 
 public record ProgramModel(LongProperty id, StringProperty name, ObjectProperty<ToggleSwitch> run,
-                           StringProperty path) implements BaseSoftwareModelInterface {
+                           StringProperty path, StringProperty fileName) implements BaseSoftwareModelInterface {
 
     public StringProperty pathProperty() {
         return path;
+    }
+
+    public StringProperty fileNameProperty() {
+        return fileName;
     }
 
     @Override

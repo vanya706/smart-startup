@@ -11,4 +11,6 @@ public class Program extends BaseSoftwareEntity {
 
     private String path;
 
+    private String fileName;
+
 }

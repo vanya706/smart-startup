@@ -18,10 +18,11 @@ public class ProgramService {
     @Autowired
     private ProgramRepository programRepository;
 
-    public void create(String name, String path) {
+    public void create(String name, String path, String fileName) {
         Program program = new Program();
         program.setName(name);
         program.setPath(path);
+        program.setFileName(fileName);
         programRepository.save(program);
     }
 

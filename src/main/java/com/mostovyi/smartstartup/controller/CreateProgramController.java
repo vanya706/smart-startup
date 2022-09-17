@@ -22,6 +22,8 @@ public class CreateProgramController extends BaseController {
     private TextField programNameTextField;
     @FXML
     private Label selectedProgramPathLabel;
+    @FXML
+    private Label selectedProgramName;
 
     @Autowired
     private ProgramService programService;
@@ -34,7 +36,8 @@ public class CreateProgramController extends BaseController {
     public void createProgram() {
         String name = programNameTextField.getText();
         String path = selectedProgramPathLabel.getText();
-        programService.create(name, path);
+        String fileName = selectedProgramName.getText();
+        programService.create(name, path, fileName);
         stageManager.switchScene(MAIN);
     }
 
@@ -43,8 +46,10 @@ public class CreateProgramController extends BaseController {
         File file = fileChooser.showOpenDialog(selectedProgramPathLabel.getScene().getWindow());
         if (Objects.nonNull(file) && file.canExecute()) {
             selectedProgramPathLabel.setText(file.getPath());
+            selectedProgramName.setText(file.getName());
         } else {
             selectedProgramPathLabel.setText("Selected not execute able file, please try another one.");
+            selectedProgramName.setText("Selected not execute able file, please try another one.");
         }
     }
 

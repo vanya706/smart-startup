@@ -9,6 +9,7 @@
     <children>
         <TextField fx:id="programNameTextField" promptText="Please fill in name of the Program" />
       <Label fx:id="selectedProgramPathLabel" text="Please choose file" />
+      <Label fx:id="selectedProgramName" text="Please choose file" />
         <Button mnemonicParsing="false" onAction="#chooseFile" text="Choose file" />
         <Button mnemonicParsing="false" onAction="#createProgram" text="Create" />
         <Button mnemonicParsing="false" onAction="#cancel" text="Cancel" />
