@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class ProgramService {
+public class ProgramService extends AbstractSoftwareService {
 
     @Autowired
     private ProgramMapper programMapper;

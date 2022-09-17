@@ -3,7 +3,7 @@ package com.mostovyi.smartstartup.controller;
 import com.mostovyi.smartstartup.model.ProfileModel;
 import com.mostovyi.smartstartup.service.FlowService;
 import com.mostovyi.smartstartup.service.ProfileService;
-import com.mostovyi.smartstartup.util.SoftwareModelConverter;
+import com.mostovyi.smartstartup.util.converter.SoftwareModelConverter;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

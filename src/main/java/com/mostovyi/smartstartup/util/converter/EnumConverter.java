@@ -1,4 +1,4 @@
-package com.mostovyi.smartstartup.util;
+package com.mostovyi.smartstartup.util.converter;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;

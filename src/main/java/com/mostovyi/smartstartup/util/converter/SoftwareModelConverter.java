@@ -1,4 +1,4 @@
-package com.mostovyi.smartstartup.util;
+package com.mostovyi.smartstartup.util.converter;
 
 import com.mostovyi.smartstartup.model.BaseSoftwareModelInterface;
 import javafx.util.StringConverter;

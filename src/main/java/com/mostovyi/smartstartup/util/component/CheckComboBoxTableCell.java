@@ -1,6 +1,8 @@
-package com.mostovyi.smartstartup.util;
+package com.mostovyi.smartstartup.util.component;
 
 import com.mostovyi.smartstartup.model.BaseSoftwareModelInterface;
+import com.mostovyi.smartstartup.util.converter.SoftwareModelCollectionConverter;
+import com.mostovyi.smartstartup.util.converter.SoftwareModelConverter;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;

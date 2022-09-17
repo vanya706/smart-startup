@@ -37,5 +37,7 @@ module smart.startup {
     exports com.mostovyi.smartstartup.util to spring.beans;
     opens com.mostovyi.smartstartup.model;
     exports com.mostovyi.smartstartup.mapper.base to spring.beans;
+    exports com.mostovyi.smartstartup.util.component to spring.beans;
+    exports com.mostovyi.smartstartup.util.converter to spring.beans;
 
 }

@@ -6,15 +6,14 @@ import com.mostovyi.smartstartup.model.ProgramModel;
 import com.mostovyi.smartstartup.service.FlowService;
 import com.mostovyi.smartstartup.service.ProfileService;
 import com.mostovyi.smartstartup.service.ProgramService;
-import com.mostovyi.smartstartup.util.CheckComboBoxTableCell;
-import javafx.beans.property.SimpleObjectProperty;
+import com.mostovyi.smartstartup.util.component.CheckComboBoxTableCell;
+import com.mostovyi.smartstartup.util.component.SellValueToggleSwitch;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.input.MouseEvent;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.controlsfx.control.ToggleSwitch;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,18 +54,7 @@ public class MainController extends BaseController {
         flowsTableView.setEditable(true);
 
         TableColumn<FlowModel, ToggleSwitch> runColumn = new TableColumn<>("Run");
-        runColumn.setCellValueFactory(param -> {
-            FlowModel flow = param.getValue();
-            ToggleSwitch toggleSwitch = flow.run().get();
-            toggleSwitch.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                if (toggleSwitch.isSelected()) {
-                    flowService.run(flow.id().get());
-                } else {
-                    flowService.close(flow.id().get());
-                }
-            });
-            return new SimpleObjectProperty<>(toggleSwitch);
-        });
+        runColumn.setCellValueFactory(SellValueToggleSwitch.forCellValueFactory(flowService));
 
         TableColumn<FlowModel, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -93,18 +81,7 @@ public class MainController extends BaseController {
         profilesTableView.setEditable(true);
 
         TableColumn<ProfileModel, ToggleSwitch> runColumn = new TableColumn<>("Run");
-        runColumn.setCellValueFactory(param -> {
-            ProfileModel profile = param.getValue();
-            ToggleSwitch toggleSwitch = profile.run().get();
-            toggleSwitch.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                if (toggleSwitch.isSelected()) {
-                    profileService.run(profile.id().get());
-                } else {
-                    profileService.close(profile.id().get());
-                }
-            });
-            return new SimpleObjectProperty<>(toggleSwitch);
-        });
+        runColumn.setCellValueFactory(SellValueToggleSwitch.forCellValueFactory(profileService));
 
         TableColumn<ProfileModel, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -131,18 +108,7 @@ public class MainController extends BaseController {
         programsTableView.setEditable(true);
 
         TableColumn<ProgramModel, ToggleSwitch> runColumn = new TableColumn<>("Run");
-        runColumn.setCellValueFactory(param -> {
-            ProgramModel programModel = param.getValue();
-            ToggleSwitch toggleSwitch = programModel.run().get();
-            toggleSwitch.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-                if (toggleSwitch.isSelected()) {
-                    programService.run(programModel.id().get());
-                } else {
-                    programService.close(programModel.id().get());
-                }
-            });
-            return new SimpleObjectProperty<>(toggleSwitch);
-        });
+        runColumn.setCellValueFactory(SellValueToggleSwitch.forCellValueFactory(programService));
 
         TableColumn<ProgramModel, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));

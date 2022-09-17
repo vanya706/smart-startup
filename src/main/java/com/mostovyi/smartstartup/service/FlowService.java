@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class FlowService {
+public class FlowService extends AbstractSoftwareService {
 
     @Autowired
     private FlowRepository flowRepository;
@@ -45,11 +45,11 @@ public class FlowService {
         // todo implement
     }
 
-    public void run(Long id) {
+    public void run(long id) {
         // todo implement
     }
 
-    public void close(Long id) {
+    public void close(long id) {
         // todo implement
     }
 
