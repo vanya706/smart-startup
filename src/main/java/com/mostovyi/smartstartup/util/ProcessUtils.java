@@ -15,8 +15,7 @@ public class ProcessUtils {
         p.inputReader()
                 .lines()
                 .filter(StringUtils::isNotBlank)
-                .findFirst()
-                .ifPresent(processInfoString -> {
+                .forEach(processInfoString -> {
                     String[] infos = processInfoString.split(",");
                     if (infos.length < 5) {
                         log.warn("Got unexpected string from input: {}", processInfoString);
