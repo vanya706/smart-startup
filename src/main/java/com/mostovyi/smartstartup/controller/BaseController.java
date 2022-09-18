@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Lazy;
 
 public abstract class BaseController {
 
+    private static final String DARK_THEME_RESOURCE_PATH = "com/mostovyi/smartstartup/controller/styles-dark-theme.css";
+
     @FXML
     private CheckMenuItem useDarkThemeCheckMenuItem;
 
@@ -35,10 +37,10 @@ public abstract class BaseController {
                     settings.setUseDarkTheme(isSelected);
                     settingsRepository.save(settings);
                     if (isSelected) {
-                        stylesheets.add("dark-theme.css");
+                        stylesheets.add(DARK_THEME_RESOURCE_PATH);
                         return;
                     }
-                    stylesheets.remove("dark-theme.css");
+                    stylesheets.remove(DARK_THEME_RESOURCE_PATH);
                 });
         useDarkThemeCheckMenuItem.setSelected(BooleanUtils.isTrue(settings.getUseDarkTheme()));
     }
