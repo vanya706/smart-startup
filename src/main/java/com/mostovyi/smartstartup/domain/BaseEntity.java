@@ -1,5 +1,7 @@
 package com.mostovyi.smartstartup.domain;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,10 +9,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class BaseSoftwareEntity extends BaseEntity {
+public abstract class BaseEntity {
 
-    private String name;
-
-    private boolean run;
+    @Id
+    @GeneratedValue
+    private Long id;
 
 }

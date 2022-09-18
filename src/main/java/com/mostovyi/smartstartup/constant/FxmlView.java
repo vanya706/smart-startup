@@ -1,9 +1,6 @@
 package com.mostovyi.smartstartup.constant;
 
-import com.mostovyi.smartstartup.controller.CreateFlowController;
-import com.mostovyi.smartstartup.controller.CreateProfileController;
-import com.mostovyi.smartstartup.controller.CreateProgramController;
-import com.mostovyi.smartstartup.controller.MainController;
+import com.mostovyi.smartstartup.controller.*;
 import lombok.Getter;
 
 @Getter
@@ -13,9 +10,9 @@ public enum FxmlView {
     CREATE_PROFILE(CreateProfileController.class),
     CREATE_PROGRAM(CreateProgramController.class);
 
-    private final Class<?> controller;
+    private final Class<? extends BaseController> controller;
 
-    FxmlView(Class<?> controller) {
+    FxmlView(Class<? extends BaseController> controller) {
         this.controller = controller;
     }
 

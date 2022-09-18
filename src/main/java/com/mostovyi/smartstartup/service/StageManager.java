@@ -1,6 +1,7 @@
 package com.mostovyi.smartstartup.service;
 
 import com.mostovyi.smartstartup.constant.FxmlView;
+import com.mostovyi.smartstartup.controller.BaseController;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -19,9 +20,13 @@ public class StageManager {
     }
 
     public void switchScene(FxmlView fxmlView) {
-        Parent root = fxWeaver.loadView(fxmlView.getController());
+        var controllerAndView = fxWeaver.load(fxmlView.getController());
+        Parent root = (Parent) controllerAndView.getView().orElse(null);
         Scene scene = prepareScene(root);
         primaryStage.setScene(scene);
+
+        BaseController controller = controllerAndView.getController();
+        controller.postInitialize();
     }
 
     private Scene prepareScene(Parent root) {
@@ -31,6 +36,10 @@ public class StageManager {
         }
         scene.setRoot(root);
         return scene;
+    }
+
+    public Scene getScene() {
+        return primaryStage.getScene();
     }
 
 }
